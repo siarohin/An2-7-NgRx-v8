@@ -1,7 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { TaskModel } from './../../models/task.model';
+// @Ngrx
+import { Store, select } from '@ngrx/store';
+import { AppState, TasksState } from './../../../core/@ngrx';
+import * as TasksActions from './../../../core/@ngrx/tasks/tasks.actions';
+
+// rxjs
+import { Observable } from 'rxjs';
+
+import { TaskModel, Task } from './../../models/task.model';
 import { TaskPromiseService } from './../../services';
 
 @Component({
@@ -10,14 +18,17 @@ import { TaskPromiseService } from './../../services';
 })
 export class TaskListComponent implements OnInit {
   tasks: Promise<Array<TaskModel>>;
+  tasksState$: Observable<TasksState>;
 
   constructor(
     private router: Router,
-    private taskPromiseService: TaskPromiseService
+    private taskPromiseService: TaskPromiseService,
+    private store: Store<AppState>
   ) {}
 
   ngOnInit() {
-    this.tasks = this.taskPromiseService.getTasks();
+    console.log('We have a store! ', this.store);
+    this.tasksState$ = this.store.pipe(select('tasks'));
   }
 
   onCreateTask() {
@@ -26,7 +37,10 @@ export class TaskListComponent implements OnInit {
   }
 
   onCompleteTask(task: TaskModel): void {
-    this.updateTask(task).catch(err => console.log(err));
+    // task is not plain object
+    // taskToComplete is a plain object
+    const taskToComplete: Task = { ...task };
+    this.store.dispatch(TasksActions.completeTask({ task: taskToComplete }));
   }
 
   onEditTask(task: TaskModel): void {
@@ -39,16 +53,5 @@ export class TaskListComponent implements OnInit {
       .deleteTask(task)
       .then(() => (this.tasks = this.taskPromiseService.getTasks()))
       .catch(err => console.log(err));
-  }
-
-  private async updateTask(task: TaskModel) {
-    const updatedTask = await this.taskPromiseService.updateTask({
-      ...task,
-      done: true
-    });
-
-    const tasks: TaskModel[] = await this.tasks;
-    const index = tasks.findIndex(t => t.id === updatedTask.id);
-    tasks[index] = { ...updatedTask };
   }
 }
