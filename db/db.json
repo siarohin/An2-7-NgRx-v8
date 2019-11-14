@@ -3,14 +3,14 @@
     {
       "id": 1,
       "action": "Estimate",
-      "priority": 1,
+      "priority": 2,
       "estHours": 8
     },
     {
       "id": 2,
       "action": "Create",
       "priority": 2,
-      "estHours": 8
+      "estHours": 3
     },
     {
       "id": 3,
@@ -35,6 +35,14 @@
       "action": "Deploy",
       "priority": 2,
       "estHours": 8
+    },
+    {
+      "id": 7,
+      "action": "Create",
+      "priority": 2,
+      "estHours": 1,
+      "actHours": 0,
+      "done": false
     }
   ],
   "users": [
