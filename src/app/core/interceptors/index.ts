@@ -1,6 +1,6 @@
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
-import { TsInterceptor } from './ts.interceptor';
+import { TsInterceptor } from "./ts.interceptor";
 
 // Angular applies interceptors in the order that you provide them.
 // If you provide interceptors A, then B, then C,

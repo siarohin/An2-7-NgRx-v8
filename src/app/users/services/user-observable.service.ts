@@ -1,18 +1,18 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, Inject } from "@angular/core";
 import {
   HttpClient,
   HttpHeaders,
   HttpResponse,
   HttpErrorResponse,
   HttpParams
-} from '@angular/common/http';
+} from "@angular/common/http";
 
-import { Observable, throwError } from 'rxjs';
-import { concatMap, catchError, retry } from 'rxjs/operators';
+import { Observable, throwError } from "rxjs";
+import { concatMap, catchError, retry } from "rxjs/operators";
 
-import { UserModel } from './../models/user.model';
-import { UsersAPI } from './../users.config';
-import { UsersServicesModule } from '../users-services.module';
+import { UserModel } from "./../models/user.model";
+import { UsersAPI } from "./../users.config";
+import { UsersServicesModule } from "../users-services.module";
 
 @Injectable({
   providedIn: UsersServicesModule
@@ -43,7 +43,7 @@ export class UserObservableService {
     const url = `${this.usersUrl}/${user.id}`;
     const body = JSON.stringify(user);
     const options = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      headers: new HttpHeaders({ "Content-Type": "application/json" })
     };
 
     return this.http
@@ -55,7 +55,7 @@ export class UserObservableService {
     const url = this.usersUrl;
     const body = JSON.stringify(user);
     const options = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      headers: new HttpHeaders({ "Content-Type": "application/json" })
     };
 
     return this.http
@@ -72,7 +72,7 @@ export class UserObservableService {
   private handleError(err: HttpErrorResponse) {
     // A client-side or network error occurred.
     if (err.error instanceof Error) {
-      console.error('An error occurred:', err.error.message);
+      console.error("An error occurred:", err.error.message);
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
@@ -81,6 +81,6 @@ export class UserObservableService {
       );
     }
 
-    return throwError('Something bad happened; please try again later.');
+    return throwError("Something bad happened; please try again later.");
   }
 }

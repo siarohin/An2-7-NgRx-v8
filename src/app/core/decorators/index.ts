@@ -1,1 +1,1 @@
-export * from './auto-unsubscribe.decorator';
+export * from "./auto-unsubscribe.decorator";

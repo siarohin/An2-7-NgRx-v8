@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
-import { TaskModel } from './../models/task.model';
-import { TasksServicesModule } from '../tasks-services.module';
+import { TaskModel } from "./../models/task.model";
+import { TasksServicesModule } from "../tasks-services.module";
 
 const taskList = [
-  new TaskModel(1, 'Estimate', 1, 8, 8, true),
-  new TaskModel(2, 'Create', 2, 8, 4, false),
-  new TaskModel(3, 'Deploy', 3, 8, 0, false)
+  new TaskModel(1, "Estimate", 1, 8, 8, true),
+  new TaskModel(2, "Create", 2, 8, 4, false),
+  new TaskModel(3, "Deploy", 3, 8, 0, false)
 ];
 
 const taskListPromise = Promise.resolve(taskList);
@@ -22,7 +22,7 @@ export class TaskArrayService {
   getTask(id: number | string): Promise<TaskModel> {
     return this.getTasks()
       .then(tasks => tasks.find(task => task.id === +id))
-      .catch(() => Promise.reject('Error in getTask method'));
+      .catch(() => Promise.reject("Error in getTask method"));
   }
 
   createTask(task: TaskModel): void {

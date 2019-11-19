@@ -1,56 +1,56 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule, ExtraOptions } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule, ExtraOptions } from "@angular/router";
 
 import {
   AboutComponent,
   MessagesComponent,
   LoginComponent,
   PathNotFoundComponent
-} from './layout';
-import { AuthGuard, CustomPreloadingStrategyService } from './core';
+} from "./layout";
+import { AuthGuard, CustomPreloadingStrategyService } from "./core";
 
 const routes: Routes = [
   {
-    path: 'about',
+    path: "about",
     component: AboutComponent,
-    data: { title: 'About' }
+    data: { title: "About" }
   },
   {
-    path: 'login',
+    path: "login",
     component: LoginComponent,
-    data: { title: 'Login' }
+    data: { title: "Login" }
   },
   {
-    path: 'admin',
+    path: "admin",
     canLoad: [AuthGuard],
-    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
-    data: { title: 'Admin' }
+    loadChildren: () => import("./admin/admin.module").then(m => m.AdminModule),
+    data: { title: "Admin" }
   },
   {
-    path: 'users',
-    loadChildren: () => import('./users/users.module').then(m => m.UsersModule),
+    path: "users",
+    loadChildren: () => import("./users/users.module").then(m => m.UsersModule),
     data: {
       preload: true,
-      title: 'Users'
+      title: "Users"
     }
   },
   {
-    path: 'messages',
+    path: "messages",
     component: MessagesComponent,
-    outlet: 'messages'
+    outlet: "messages"
   },
 
   {
-    path: '',
-    redirectTo: '/home',
-    pathMatch: 'full'
+    path: "",
+    redirectTo: "/home",
+    pathMatch: "full"
   },
   {
     // The router will match this route if the URL requested
     // doesn't match any paths for routes defined in our configuration
-    path: '**',
+    path: "**",
     component: PathNotFoundComponent,
-    data: { title: 'Page Not Found' }
+    data: { title: "Page Not Found" }
   }
 ];
 

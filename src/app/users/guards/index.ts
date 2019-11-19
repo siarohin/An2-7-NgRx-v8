@@ -1,1 +1,1 @@
-export * from './user-resolve.guard';
+export * from "./user-resolve.guard";

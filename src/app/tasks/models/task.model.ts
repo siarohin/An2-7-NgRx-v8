@@ -10,7 +10,7 @@ export interface Task {
 export class TaskModel implements Task {
   constructor(
     public id: number = null,
-    public action: string = '',
+    public action: string = "",
     public priority: number = 0,
     public estHours: number = 0,
     public actHours?: number,

@@ -1,5 +1,5 @@
-import { Observable } from 'rxjs';
-import { UrlTree } from '@angular/router';
+import { Observable } from "rxjs";
+import { UrlTree } from "@angular/router";
 
 export interface CanComponentDeactivate {
   canDeactivate: () =>

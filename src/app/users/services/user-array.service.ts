@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
 // rxjs
-import { Observable, of, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { Observable, of, throwError } from "rxjs";
+import { map, catchError } from "rxjs/operators";
 
-import { UserModel } from './../models/user.model';
-import { UsersServicesModule } from '../users-services.module';
+import { UserModel } from "./../models/user.model";
+import { UsersServicesModule } from "../users-services.module";
 
 const userList: Array<UserModel> = [
-  new UserModel(1, 'Anna', 'Borisova'),
-  new UserModel(2, 'Boris', 'Vlasov'),
-  new UserModel(3, 'Gennadiy', 'Dmitriev')
+  new UserModel(1, "Anna", "Borisova"),
+  new UserModel(2, "Boris", "Vlasov"),
+  new UserModel(3, "Gennadiy", "Dmitriev")
 ];
 
 const userListObservable: Observable<Array<UserModel>> = of(userList);
@@ -26,7 +26,7 @@ export class UserArrayService {
   getUser(id: number | string): Observable<UserModel> {
     return this.getUsers().pipe(
       map((users: Array<UserModel>) => users.find(user => user.id === +id)),
-      catchError(err => throwError('Error in getUser method'))
+      catchError(err => throwError("Error in getUser method"))
     );
   }
 

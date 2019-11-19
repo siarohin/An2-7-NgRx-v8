@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 import {
   ActivatedRouteSnapshot,
   CanActivate,
@@ -10,13 +10,13 @@ import {
   RouterStateSnapshot,
   UrlTree,
   UrlSegment
-} from '@angular/router';
+} from "@angular/router";
 
-import { Observable } from 'rxjs';
-import { AuthService } from '../services/auth.service';
+import { Observable } from "rxjs";
+import { AuthService } from "../services/auth.service";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   constructor(private authService: AuthService, private router: Router) {}
@@ -29,7 +29,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    console.log('CanActivateGuard is called');
+    console.log("CanActivateGuard is called");
     const { url } = state;
     return this.checkLogin(url);
   }
@@ -42,13 +42,13 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    console.log('CanActivateChild Guard is called');
+    console.log("CanActivateChild Guard is called");
     const { url } = state;
     return this.checkLogin(url);
   }
 
   canLoad(route: Route, segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
-    console.log('CanLoad Guard is activated');
+    console.log("CanLoad Guard is activated");
     const url = `/${route.path}`;
 
     return this.checkLogin(url) as boolean;
@@ -69,11 +69,11 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     // that contains our global query params and fragment
     const navigationExtras: NavigationExtras = {
       queryParams: { sessionId },
-      fragment: 'anchor'
+      fragment: "anchor"
     };
 
     // Navigate to the login page with extras
-    this.router.navigate(['/login'], navigationExtras);
+    this.router.navigate(["/login"], navigationExtras);
     return false;
   }
 }

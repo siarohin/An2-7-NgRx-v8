@@ -1,22 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, UrlTree } from '@angular/router';
-import { Location } from '@angular/common';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router, UrlTree } from "@angular/router";
+import { Location } from "@angular/common";
 
 // rxjs
-import { Observable, Subscription } from 'rxjs';
-import { pluck } from 'rxjs/operators';
+import { Observable, Subscription } from "rxjs";
+import { pluck } from "rxjs/operators";
 
 import {
   AutoUnsubscribe,
   DialogService,
   CanComponentDeactivate
-} from './../../../core';
-import { UserModel } from './../../models/user.model';
-import { UserObservableService } from './../../services';
+} from "./../../../core";
+import { UserModel } from "./../../models/user.model";
+import { UserObservableService } from "./../../services";
 
 @Component({
-  templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.css']
+  templateUrl: "./user-form.component.html",
+  styleUrls: ["./user-form.component.css"]
 })
 @AutoUnsubscribe()
 export class UserFormComponent implements OnInit, CanComponentDeactivate {
@@ -37,7 +37,7 @@ export class UserFormComponent implements OnInit, CanComponentDeactivate {
   ngOnInit(): void {
     // data is an observable object
     // which contains custom and resolve data
-    this.route.data.pipe(pluck('user')).subscribe((user: UserModel) => {
+    this.route.data.pipe(pluck("user")).subscribe((user: UserModel) => {
       this.user = { ...user };
       this.originalUser = { ...user };
     });
@@ -46,13 +46,13 @@ export class UserFormComponent implements OnInit, CanComponentDeactivate {
   onSaveUser() {
     const user = { ...this.user };
 
-    const method = user.id ? 'updateUser' : 'createUser';
+    const method = user.id ? "updateUser" : "createUser";
     const observer = {
       next: (savedUser: UserModel) => {
         this.originalUser = { ...savedUser };
         user.id
           ? // optional parameter: http://localhost:4200/users;editedUserID=2
-            this.router.navigate(['users', { editedUserID: user.id }])
+            this.router.navigate(["users", { editedUserID: user.id }])
           : this.onGoBack();
       },
       error: (err: any) => console.log(err)
@@ -82,6 +82,6 @@ export class UserFormComponent implements OnInit, CanComponentDeactivate {
 
     // Otherwise ask the user with the dialog service and return its
     // promise which resolves to true or false when the user decides
-    return this.dialogService.confirm('Discard changes?');
+    return this.dialogService.confirm("Discard changes?");
   }
 }

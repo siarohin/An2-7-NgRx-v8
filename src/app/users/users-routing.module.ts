@@ -1,23 +1,23 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 
-import { UsersComponent } from './users.component';
-import { UserListComponent, UserFormComponent } from './components';
-import { UserResolveGuard } from './guards';
+import { UsersComponent } from "./users.component";
+import { UserListComponent, UserFormComponent } from "./components";
+import { UserResolveGuard } from "./guards";
 
-import { CanDeactivateGuard } from './../core';
+import { CanDeactivateGuard } from "./../core";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: UsersComponent,
     children: [
       {
-        path: 'add',
+        path: "add",
         component: UserFormComponent
       },
       {
-        path: 'edit/:userID',
+        path: "edit/:userID",
         component: UserFormComponent,
         canDeactivate: [CanDeactivateGuard],
         resolve: {
@@ -25,7 +25,7 @@ const routes: Routes = [
         }
       },
       {
-        path: '',
+        path: "",
         component: UserListComponent
       }
     ]

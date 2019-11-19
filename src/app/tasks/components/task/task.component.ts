@@ -4,14 +4,14 @@ import {
   Input,
   Output,
   ChangeDetectionStrategy
-} from '@angular/core';
+} from "@angular/core";
 
-import { TaskModel } from './../../models/task.model';
+import { TaskModel } from "./../../models/task.model";
 
 @Component({
-  selector: 'app-task',
-  templateUrl: './task.component.html',
-  styleUrls: ['./task.component.css'],
+  selector: "app-task",
+  templateUrl: "./task.component.html",
+  styleUrls: ["./task.component.css"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TaskComponent {

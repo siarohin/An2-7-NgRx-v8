@@ -1,18 +1,18 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Title, Meta } from '@angular/platform-browser';
-import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Title, Meta } from "@angular/platform-browser";
+import { Router, RouterOutlet, NavigationEnd } from "@angular/router";
 
 // rxjs
-import { Subscription } from 'rxjs';
-import { filter, map, switchMap } from 'rxjs/operators';
+import { Subscription } from "rxjs";
+import { filter, map, switchMap } from "rxjs/operators";
 
-import { MessagesService, CustomPreloadingStrategyService } from './core';
-import { SpinnerService } from './widgets';
+import { MessagesService, CustomPreloadingStrategyService } from "./core";
+import { SpinnerService } from "./widgets";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit, OnDestroy {
   private sub: Subscription;
@@ -39,7 +39,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   onDisplayMessages(): void {
-    this.router.navigate([{ outlets: { messages: ['messages'] } }]);
+    this.router.navigate([{ outlets: { messages: ["messages"] } }]);
     this.messagesService.isDisplayed = true;
   }
 
@@ -82,7 +82,7 @@ export class AppComponent implements OnInit, OnDestroy {
           }
           return route;
         }),
-        filter(route => route.outlet === 'primary'),
+        filter(route => route.outlet === "primary"),
         switchMap(route => route.data)
       )
       .subscribe(data => this.titleService.setTitle(data.title));

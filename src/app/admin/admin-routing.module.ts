@@ -1,28 +1,28 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 
-import { AdminComponent } from './admin.component';
+import { AdminComponent } from "./admin.component";
 import {
   AdminDashboardComponent,
   ManageTasksComponent,
   ManageUsersComponent
-} from './components';
+} from "./components";
 
-import { AuthGuard } from './../core';
+import { AuthGuard } from "./../core";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: AdminComponent,
     canActivate: [AuthGuard],
     children: [
       {
-        path: '',
+        path: "",
         canActivateChild: [AuthGuard],
         children: [
-          { path: 'users', component: ManageUsersComponent },
-          { path: 'tasks', component: ManageTasksComponent },
-          { path: '', component: AdminDashboardComponent }
+          { path: "users", component: ManageUsersComponent },
+          { path: "tasks", component: ManageTasksComponent },
+          { path: "", component: AdminDashboardComponent }
         ]
       }
     ]

@@ -1,14 +1,14 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, NavigationExtras } from '@angular/router';
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Router, NavigationExtras } from "@angular/router";
 
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Subject } from "rxjs";
+import { takeUntil } from "rxjs/operators";
 
-import { AuthService } from './../../../core';
+import { AuthService } from "./../../../core";
 
 @Component({
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit, OnDestroy {
   message: string;
@@ -22,12 +22,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log('[takeUntil ngOnDestroy]');
+    console.log("[takeUntil ngOnDestroy]");
     this.unsubscribe.complete();
   }
 
   onLogin() {
-    this.message = 'Trying to log in ...';
+    this.message = "Trying to log in ...";
     const observer = {
       next: () => {
         this.setMessage();
@@ -36,10 +36,10 @@ export class LoginComponent implements OnInit, OnDestroy {
           // If no redirect has been set, use the default
           const redirect = this.authService.redirectUrl
             ? this.authService.redirectUrl
-            : '/admin';
+            : "/admin";
 
           const navigationExtras: NavigationExtras = {
-            queryParamsHandling: 'preserve',
+            queryParamsHandling: "preserve",
             preserveFragment: true
           };
 
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         }
       },
       error: (err: any) => console.log(err),
-      complete: () => console.log('[takeUntil] complete')
+      complete: () => console.log("[takeUntil] complete")
     };
     this.authService
       .login()
@@ -66,6 +66,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   private setMessage() {
-    this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
+    this.message = "Logged " + (this.authService.isLoggedIn ? "in" : "out");
   }
 }

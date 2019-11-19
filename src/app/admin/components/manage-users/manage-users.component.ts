@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  templateUrl: 'manage-users.component.html',
-  styleUrls: ['manage-users.component.css']
+  templateUrl: "manage-users.component.html",
+  styleUrls: ["manage-users.component.css"]
 })
 export class ManageUsersComponent implements OnInit {
 

@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { MessagesService } from '../../../core';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { MessagesService } from "../../../core";
 
 @Component({
-  selector: 'app-messages',
-  templateUrl: './messages.component.html',
-  styleUrls: ['./messages.component.css']
+  selector: "app-messages",
+  templateUrl: "./messages.component.html",
+  styleUrls: ["./messages.component.css"]
 })
 export class MessagesComponent implements OnInit {
-  message = '';
+  message = "";
 
   constructor(
     public messagesService: MessagesService,
@@ -25,7 +25,7 @@ export class MessagesComponent implements OnInit {
   onSend() {
     if (this.message) {
       this.messagesService.addMessage(this.message);
-      this.message = '';
+      this.message = "";
     }
   }
 }

@@ -1,35 +1,35 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { MetaDefinition } from '@angular/platform-browser';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { MetaDefinition } from "@angular/platform-browser";
 
-import { TaskListComponent, TaskFormComponent } from './components';
+import { TaskListComponent, TaskFormComponent } from "./components";
 
 const metaTags: Array<MetaDefinition> = [
   {
-    name: 'description',
-    content: 'Task Manager Application. This is an ASP application'
+    name: "description",
+    content: "Task Manager Application. This is an ASP application"
   },
   {
-    name: 'keywords',
-    content: 'Angular tutorial, SPA Application, Routing'
+    name: "keywords",
+    content: "Angular tutorial, SPA Application, Routing"
   }
 ];
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: "home",
     component: TaskListComponent,
     data: {
-      title: 'Task Manager',
+      title: "Task Manager",
       meta: metaTags
     }
   },
   {
-    path: 'add',
+    path: "add",
     component: TaskFormComponent
   },
   {
-    path: 'edit/:taskID',
+    path: "edit/:taskID",
     component: TaskFormComponent
   }
 ];

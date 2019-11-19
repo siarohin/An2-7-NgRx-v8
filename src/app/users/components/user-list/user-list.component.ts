@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 
 // rxjs
-import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Observable, of } from "rxjs";
+import { switchMap } from "rxjs/operators";
 
-import { UserModel } from './../../models/user.model';
-import { UserObservableService } from './../../services';
+import { UserModel } from "./../../models/user.model";
+import { UserObservableService } from "./../../services";
 
 @Component({
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css']
+  templateUrl: "./user-list.component.html",
+  styleUrls: ["./user-list.component.css"]
 })
 export class UserListComponent implements OnInit {
   users$: Observable<Array<UserModel>>;
@@ -39,8 +39,8 @@ export class UserListComponent implements OnInit {
     this.route.paramMap
       .pipe(
         switchMap((params: ParamMap) => {
-          return params.get('editedUserID')
-            ? this.userObservableService.getUser(+params.get('editedUserID'))
+          return params.get("editedUserID")
+            ? this.userObservableService.getUser(+params.get("editedUserID"))
             : of(null);
         })
       )
@@ -48,7 +48,7 @@ export class UserListComponent implements OnInit {
   }
 
   onEditUser(user: UserModel) {
-    const link = ['/users/edit', user.id];
+    const link = ["/users/edit", user.id];
     this.router.navigate(link);
     // or
     // const link = ['edit', user.id];

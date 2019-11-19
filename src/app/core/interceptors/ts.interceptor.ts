@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 import {
   HttpEvent,
   HttpInterceptor,
@@ -7,10 +7,10 @@ import {
   HttpResponse,
   HttpParams,
   HttpEventType
-} from '@angular/common/http';
+} from "@angular/common/http";
 
-import { Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { Observable } from "rxjs";
+import { filter, map } from "rxjs/operators";
 
 @Injectable()
 export class TsInterceptor implements HttpInterceptor {
@@ -22,9 +22,9 @@ export class TsInterceptor implements HttpInterceptor {
 
     // request interceptor
     let clonedRequest;
-    if (req.url.includes('users')) {
+    if (req.url.includes("users")) {
       clonedRequest = req.clone({
-        params: new HttpParams().set('ts_interceptor', Date.now().toString())
+        params: new HttpParams().set("ts_interceptor", Date.now().toString())
         // clear the body
         // body: null
       });
@@ -38,8 +38,8 @@ export class TsInterceptor implements HttpInterceptor {
       filter((event: HttpEvent<any>) => event.type === HttpEventType.Response),
       map((event: HttpResponse<any>) => {
         // do stuff with response
-        if (event.url.includes('users')) {
-          console.log('Response Interceptor:');
+        if (event.url.includes("users")) {
+          console.log("Response Interceptor:");
           console.log(event);
           console.log(event.body);
         }
