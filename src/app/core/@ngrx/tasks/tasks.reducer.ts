@@ -12,6 +12,7 @@ const reducer = createReducer(
       loading: true
     };
   }),
+
   on(TasksActions.getTasksSuccess, (state, { tasks }) => {
     console.log("GET_TASKS_SUCCESS action being handled!");
     const data = [...tasks];
@@ -23,6 +24,7 @@ const reducer = createReducer(
       selectedTask: null
     };
   }),
+
   on(
     TasksActions.getTasksError,
     TasksActions.getTaskError,
@@ -45,6 +47,7 @@ const reducer = createReducer(
       loaded: false
     };
   }),
+
   on(TasksActions.getTaskSuccess, (state, { task }) => {
     console.log("GET_TASK action being handled!");
     const selectedTask = { ...task };
@@ -54,11 +57,6 @@ const reducer = createReducer(
       loaded: true,
       selectedTask
     };
-  }),
-
-  on(TasksActions.createTask, state => {
-    console.log("CREATE_TASK action being handled!");
-    return { ...state };
   }),
 
   on(TasksActions.createTaskSuccess, (state, { task }) => {
@@ -74,8 +72,9 @@ const reducer = createReducer(
   on(
     TasksActions.updateTaskSuccess,
     TasksActions.createTaskError,
+    TasksActions.deleteTaskError,
     (state, { task }) => {
-      console.log("'CREATE/UPDATE_TASK_SUCCESS action being handled!");
+      console.log("'CREATE/UPDATE/DELETE_TASK_ERROR action being handled!");
       const data = [...state.data];
 
       const index = data.findIndex(t => t.id === task.id);
@@ -97,26 +96,14 @@ const reducer = createReducer(
     };
   }),
 
-  on(TasksActions.completeTask, (state, { task }) => {
-    console.log("COMPLETE_TASK action being handled!");
-
-    const id = task.id;
-    const data = state.data.map(t => {
-      if (t.id === id) {
-        return { ...task, done: true };
-      }
-
-      return t;
-    });
+  on(TasksActions.deleteTaskSuccess, (state, { task }) => {
+    console.log("DELETE_TASK_SUCCESS action being handled!");
+    const data = state.data.filter(t => t.id !== task.id);
 
     return {
       ...state,
       data
     };
-  }),
-  on(TasksActions.deleteTask, state => {
-    console.log("DELETE_TASK action being handled!");
-    return { ...state };
   })
 );
 
